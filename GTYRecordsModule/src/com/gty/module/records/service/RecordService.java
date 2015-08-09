@@ -80,7 +80,15 @@ public final class RecordService {
 			validationResult = "Expense value cannot be less than zero. ";
 		} else if (record.getDeposit().compareTo(BigDecimal.ZERO) < 0) {
 			validationResult = "Deposit value cannot be less than zero. ";
-		}
+		} else if (record.getAcoh().compareTo(BigDecimal.ZERO) < 0) {
+			validationResult = "ACOH value cannot be less than zero. ";
+		} else if (record.getDiscrepancyAmount().compareTo(BigDecimal.ZERO) < 0) {
+			validationResult = "Discrepancy Amount value cannot be less than zero. ";
+		} else if ((record.getDiscrepancyAmount().compareTo(BigDecimal.ZERO) > 0) && (record.getDiscrepancyType().equals("None"))) {
+			validationResult = "Discrepancy amount should not be zero if Discrepancy Type is not 'None'";
+		} else if ((!record.getDiscrepancyType().equals("None")) && (record.getDiscrepancyCategory().equals("None"))) {
+			validationResult = "Discrepancy Type should not be 'None' if Discrepancy Category is not 'None'";
+		} 
 
 		return validationResult;
 	}
@@ -110,7 +118,15 @@ public final class RecordService {
 			validationResult = "Expense value cannot be less than zero. ";
 		} else if (record.getDeposit().compareTo(BigDecimal.ZERO) < 0) {
 			validationResult = "Deposit value cannot be less than zero. ";
-		}
+		} else if (record.getAcoh().compareTo(BigDecimal.ZERO) < 0) {
+			validationResult = "ACOH value cannot be less than zero. ";
+		} else if (record.getDiscrepancyAmount().compareTo(BigDecimal.ZERO) < 0) {
+			validationResult = "Discrepancy Amount value cannot be less than zero. ";
+		} else if ((record.getDiscrepancyAmount().compareTo(BigDecimal.ZERO) > 0) && (record.getDiscrepancyType().equals("None"))) {
+			validationResult = "Discrepancy amount should not be zero if Discrepancy Type is not 'None'";
+		} else if ((!record.getDiscrepancyType().equals("None")) && (record.getDiscrepancyCategory().equals("None"))) {
+			validationResult = "Discrepancy Type should not be 'None' if Discrepancy Category is not 'None'";
+		} 
 
 		return validationResult;
 	}

@@ -49,13 +49,13 @@ public class RecordDAO implements RowMapper<Record> {
 	}
 
 	public void addRecord(Record record) {
-		String SQL = "insert into record (branch, bank, date, consignment, overdue, advanced, open_consignment, due_consignment, new_consignment, sales, expense, deposit) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		jdbcTemplate.update(SQL, record.getBranch(), record.getBank(), record.getDate(), record.getConsignment(), record.getOverdue(), record.getAdvanced(), record.getOpenConsignment(), record.getDueConsignment(), record.getNewConsignment(), record.getSales(), record.getExpense(), record.getDeposit());
+		String SQL = "insert into record (branch, bank, date, consignment, overdue, advanced, open_consignment, due_consignment, new_consignment, sales, expense, deposit, pcoh, acoh, diff, discrepancy_type, discrepancy_category, discrepancy_amount, additional_information) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(SQL, record.getBranch(), record.getBank(), record.getDate(), record.getConsignment(), record.getOverdue(), record.getAdvanced(), record.getOpenConsignment(), record.getDueConsignment(), record.getNewConsignment(), record.getSales(), record.getExpense(), record.getDeposit(), record.getPcoh(), record.getAcoh(), record.getDiff(), record.getDiscrepancyType(), record.getDiscrepancyCategory(), record.getDiscrepancyAmount(), record.getAdditionalInformation());
 	}
 
 	public void updateRecord(Record record) {
-		String SQL = "update record set branch = ?, bank = ?, date = ?, consignment = ?, overdue = ?, advanced = ?, open_consignment = ?, due_consignment = ?, new_consignment = ?, sales = ?, expense = ?, deposit = ? where id = ?";
-		jdbcTemplate.update(SQL, record.getBranch(), record.getBank(), record.getDate(), record.getConsignment(), record.getOverdue(), record.getAdvanced(), record.getOpenConsignment(), record.getDueConsignment(), record.getNewConsignment(), record.getSales(), record.getExpense(), record.getDeposit(), record.getId());
+		String SQL = "update record set branch = ?, bank = ?, date = ?, consignment = ?, overdue = ?, advanced = ?, open_consignment = ?, due_consignment = ?, new_consignment = ?, sales = ?, expense = ?, deposit = ?, pcoh = ?, acoh = ?, diff = ?, discrepancy_type = ?, discrepancy_category = ?, discrepancy_amount = ?, additional_information = ? where id = ?";
+		jdbcTemplate.update(SQL, record.getBranch(), record.getBank(), record.getDate(), record.getConsignment(), record.getOverdue(), record.getAdvanced(), record.getOpenConsignment(), record.getDueConsignment(), record.getNewConsignment(), record.getSales(), record.getExpense(), record.getDeposit(), record.getPcoh(), record.getAcoh(), record.getDiff(), record.getDiscrepancyType(), record.getDiscrepancyCategory(), record.getDiscrepancyAmount(), record.getAdditionalInformation(), record.getId());
 	}
 
 	public void updateBankOfRecords(String currentBankName, String newBankName) {
@@ -84,6 +84,13 @@ public class RecordDAO implements RowMapper<Record> {
 		record.setSales(rs.getBigDecimal("sales"));
 		record.setExpense(rs.getBigDecimal("expense"));
 		record.setDeposit(rs.getBigDecimal("deposit"));
+		record.setPcoh(rs.getBigDecimal("pcoh"));
+		record.setAcoh(rs.getBigDecimal("acoh"));
+		record.setDiff(rs.getBigDecimal("diff"));
+		record.setDiscrepancyType(rs.getString("discrepancy_type"));
+		record.setDiscrepancyCategory(rs.getString("discrepancy_category"));
+		record.setDiscrepancyAmount(rs.getBigDecimal("discrepancy_amount"));
+		record.setAdditionalInformation(rs.getString("additional_information"));
 		return record;
 	}
 }

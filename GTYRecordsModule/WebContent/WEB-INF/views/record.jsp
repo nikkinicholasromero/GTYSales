@@ -148,6 +148,49 @@
 									<input type="number" class="form-control input-sm" id="addDeposit" name="addDeposit" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
 								</div>
 							</div>
+							<div class="row" style="margin-bottom: 5px">
+								<div class="col-md-4 col-xs-12">
+									<label>PCOH</label>
+									<input type="number" class="form-control input-sm" id="addPcoh" name="addPcoh" min="0" max="999999999999999" oninput="sliceLength(this, 15)" disabled>
+								</div>
+								<div class="col-md-4 col-xs-12">
+									<label>ACOH</label>
+									<input type="number" class="form-control input-sm" id="addAcoh" name="addAcoh" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
+								</div>
+								<div class="col-md-4 col-xs-12">
+									<label>Diff</label>
+									<input type="number" class="form-control input-sm" id="addDiff" name="addDiff" min="0" max="999999999999999" oninput="sliceLength(this, 15)" disabled>
+								</div>
+							</div>
+							<div class="row" style="margin-bottom: 10px">
+								<div class="col-md-4 col-xs-12">
+									<label>Discrepancy Type</label>
+									<select class="form-control input-sm" id="addDiscrepancyType" name="addDiscrepancyType">
+										<option value="None">None</option>
+										<option value="CashLost">CashLost</option>
+										<option value="AdditionalCash">AdditionalCash</option>
+									</select>
+								</div>
+								<div class="col-md-4 col-xs-12">
+									<label>Discrepancy Category</label>
+									<select class="form-control input-sm" id="addDiscrepancyCategory" name="addDiscrepancyCategory">
+										<option value="None">None</option>
+										<c:forEach items="${discrepancies}" var="discrepancy">
+											<option value="${discrepancy.type}">${discrepancy.type}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div class="col-md-4 col-xs-12">
+									<label>Discrepancy Amount</label>
+									<input type="number" class="form-control input-sm" id="addDiscrepancyAmount" name="addDiscrepancyAmount" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
+								</div>
+							</div>
+							<div class="row" style="margin-bottom: 5px">
+								<div class="col-md-12 col-xs-12">
+									<label>Additional Information</label>
+									<input type="text" class="form-control input-sm" id="addAdditionalInformation" name="addAdditionalInformation" maxlength="255">
+								</div>
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-lg btn-block btn-success" id="btnAddRecord" onclick="saveNewRecord()">Save</button>
@@ -230,6 +273,49 @@
 									<input type="number" class="form-control input-sm" id="updateDeposit" name="updateDeposit" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
 								</div>
 							</div>
+							<div class="row" style="margin-bottom: 5px">
+								<div class="col-md-4 col-xs-12">
+									<label>PCOH</label>
+									<input type="number" class="form-control input-sm" id="updatePcoh" name="updatePcoh" min="0" max="999999999999999" oninput="sliceLength(this, 15)" disabled>
+								</div>
+								<div class="col-md-4 col-xs-12">
+									<label>ACOH</label>
+									<input type="number" class="form-control input-sm" id="updateAcoh" name="updateAcoh" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
+								</div>
+								<div class="col-md-4 col-xs-12">
+									<label>Diff</label>
+									<input type="number" class="form-control input-sm" id="updateDiff" name="updateDiff" min="0" max="999999999999999" oninput="sliceLength(this, 15)" disabled>
+								</div>
+							</div>
+							<div class="row" style="margin-bottom: 10px">
+								<div class="col-md-4 col-xs-12">
+									<label>Discrepancy Type</label>
+									<select class="form-control input-sm" id="updateDiscrepancyType" name="updateDiscrepancyType">
+										<option value="None">None</option>
+										<option value="CashLost">CashLost</option>
+										<option value="AdditionalCash">AdditionalCash</option>
+									</select>
+								</div>
+								<div class="col-md-4 col-xs-12">
+									<label>Discrepancy Category</label>
+									<select class="form-control input-sm" id="updateDiscrepancyCategory" name="updateDiscrepancyCategory">
+										<option value="None">None</option>
+										<c:forEach items="${discrepancies}" var="discrepancy">
+											<option value="${discrepancy.type}">${discrepancy.type}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div class="col-md-4 col-xs-12">
+									<label>Discrepancy Amount</label>
+									<input type="number" class="form-control input-sm" id="updateDiscrepancyAmount" name="updateDiscrepancyAmount" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
+								</div>
+							</div>
+							<div class="row" style="margin-bottom: 5px">
+								<div class="col-md-12 col-xs-12">
+									<label>Additional Information</label>
+									<input type="text" class="form-control input-sm" id="updateAdditionalInformation" name="updateAdditionalInformation" maxlength="255">
+								</div>
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-lg btn-block btn-success" id="btnUpdateRecord" onclick="updateRecord()">Update</button>
@@ -261,6 +347,13 @@
 											<th>Sales</th>
 											<th>Exp</th>
 											<th>Deposit</th>
+											<th>PCOH</th>
+											<th>ACOH</th>
+											<th>Diff</th>
+											<th>DType</th>
+											<th>DCtgry</th>
+											<th>DAmount</th>
+											<th>Info</th>
 											<th>Update</th>
 										</tr>
 									</thead>
@@ -280,6 +373,13 @@
 												<td id="recordRowSales_${record.id}"><c:out value="${record.sales}" /></td>
 												<td id="recordRowExpense_${record.id}"><c:out value="${record.expense}" /></td>
 												<td id="recordRowDeposit_${record.id}"><c:out value="${record.deposit}" /></td>
+												<td id="recordRowPcoh_${record.id}"><c:out value="${record.pcoh}" /></td>
+												<td id="recordRowAcoh_${record.id}"><c:out value="${record.acoh}" /></td>
+												<td id="recordRowDiff_${record.id}"><c:out value="${record.diff}" /></td>
+												<td id="recordRowDiscrepancyType_${record.id}"><c:out value="${record.discrepancyType}" /></td>
+												<td id="recordRowDiscrepancyCategory_${record.id}"><c:out value="${record.discrepancyCategory}" /></td>
+												<td id="recordRowDiscrepancyAmount_${record.id}"><c:out value="${record.discrepancyAmount}" /></td>
+												<td id="recordRowAdditionalInformation_${record.id}"><c:out value="${record.additionalInformation}" /></td>
 												<td style="width: 100px;"><input type="button" value="Update" class="btn btn-xs btn-block btn-flat" data-toggle="modal" data-target="#updateRecordModal" data-id="${record.id}" /></td>
 											</tr>
 										</c:forEach>
@@ -309,16 +409,23 @@
 
 		$('#addRecordModal').on('show.bs.modal', function(e) {
 			$("#addBranch").val($("#addBranch option:first").val());
-			$('#addDate').attr('value', getDateToday());
-			$('#addConsignment').val("0");
-			$('#addOverdue').val("0");
-			$('#addAdvanced').val("0");
-			$('#addOpenConsignment').val("0");
-			$('#addDueConsignment').val("0");
-			$('#addNewConsignment').val("0");
-			$('#addSales').val("0");
-			$('#addExpense').val("0");
-			$('#addDeposit').val("0");
+			$("#addDate").attr("value", getDateToday());
+			$("#addConsignment").val("0");
+			$("#addOverdue").val("0");
+			$("#addAdvanced").val("0");
+			$("#addOpenConsignment").val("0");
+			$("#addDueConsignment").val("0");
+			$("#addNewConsignment").val("0");
+			$("#addSales").val("0");
+			$("#addExpense").val("0");
+			$("#addDeposit").val("0");
+			$("#addPcoh").val("0");
+			$("#addAcoh").val("0");
+			$("#addDiff").val("0");
+			$("#addDiscrepancyType").val($("#addDiscrepancyType option:first").val());
+			$("#addDiscrepancyCategory").val($("#addDiscrepancyCategory option:first").val());
+			$("#addDiscrepancyAmount").val("0");
+			$("#addAdditionalInformation").val("");
 			$('#successAddModalNotificationDiv').css('display', 'none');
 			$('#successAddModalNotificationMessage').text("");
 		});
@@ -359,6 +466,13 @@
 			var sales = $("#addSales").val();
 			var expense = $("#addExpense").val();
 			var deposit = $("#addDeposit").val();
+			var pcoh = $("#addPcoh").val();
+			var acoh = $("#addAcoh").val();
+			var diff = $("#addDiff").val();
+			var discrepancyType = $("#addDiscrepancyType").val();
+			var discrepancyCategory = $("#addDiscrepancyCategory").val();
+			var discrepancyAmount = $("#addDiscrepancyAmount").val();
+			var additionalInformation = $("#addAdditionalInformation").val().trim();
 			$.ajax({
 				type : 'POST',
 				url : 'addNewRecord',
@@ -373,7 +487,14 @@
 					'newConsignment' : newConsignment, 
 					'sales' : sales,
 					'expense' : expense,
-					'deposit' : deposit 
+					'deposit' : deposit, 
+					'pcoh' : pcoh,
+					'acoh' : acoh,
+					'diff' : diff,
+					'discrepancyType' : discrepancyType,
+					'discrepancyCategory' : discrepancyCategory,
+					'discrepancyAmount' : discrepancyAmount,
+					'additionalInformation' : additionalInformation
 				},
 				async : false,
 				success : function(result) {
@@ -414,6 +535,13 @@
 					row += '<td id="recordRowSales_' + result.id + '">' + result.sales + '</td>';
 					row += '<td id="recordRowExpense_' + result.id + '">' + result.expense + '</td>';
 					row += '<td id="recordRowDeposit_' + result.id + '">' + result.deposit + '</td>';
+					row += '<td id="recordRowPcoh_' + result.id + '">' + result.pcoh + '</td>';
+					row += '<td id="recordRowAcoh_' + result.id + '">' + result.acoh + '</td>';
+					row += '<td id="recordRowDiff_' + result.id + '">' + result.diff + '</td>';
+					row += '<td id="recordRowDiscrepancyType_' + result.id + '">' + result.discrepancyType + '</td>';
+					row += '<td id="recordRowDiscrepancyCategory_' + result.id + '">' + result.discrepancyCategory + '</td>';
+					row += '<td id="recordRowDiscrepancyAmount_' + result.id + '">' + result.discrepancyAmount + '</td>';
+					row += '<td id="recordRowAdditionalInformation_' + result.id + '">' + result.additionalInformation + '</td>';
 					row += '<td style="width: 100px;"><input type="button" value="Update" class="btn btn-xs btn-block btn-flat" data-toggle="modal" data-target="#updateRecordModal" data-id="' + result.id + '" /></td>';
 					row += '</tr>';
  					$('#dataTables-records tr:first').after(row);
@@ -427,19 +555,26 @@
 
 		$('#updateRecordModal').on('show.bs.modal', function(e) {
 			var id = $(e.relatedTarget).data('id');
-			$('#updateId').attr("value", $('#recordRowId_' + id).text());
-			$("[name=updateBranch]").val($('#recordRowBranch_' + id).text());
-			$("#updateDate").attr('value', $('#recordRowDate_' + id).text());
-			$("#updateConsignment").attr("value", $('#recordRowConsignment_' + id).text());
-			$("#updateOverdue").attr("value", $('#recordRowOverdue_' + id).text());
-			$("#updateAdvanced").attr("value", $('#recordRowAdvanced_' + id).text());
-			$("#updateOpenConsignment").attr("value", $('#recordRowOpenConsignment_' + id).text());
-			$("#updateDueConsignment").attr("value", $('#recordRowDueConsignment_' + id).text());
-			$("#updateNewConsignment").attr("value", $('#recordRowNewConsignment_' + id).text());
-			$("#updateSales").attr("value", $('#recordRowSales_' + id).text());
-			$("#updateExpense").attr("value", $('#recordRowExpense_' + id).text());
-			$("#updateDeposit").attr("value", $('#recordRowDeposit_' + id).text());
-			$('#successUpdateModalNotificationDiv').css('display','none');
+			$("#updateId").attr("value", $("#recordRowId_" + id).text());
+			$("[name=updateBranch]").val($("#recordRowBranch_" + id).text());
+			$("#updateDate").attr("value", $("#recordRowDate_" + id).text());
+			$("#updateConsignment").attr("value", $("#recordRowConsignment_" + id).text());
+			$("#updateOverdue").attr("value", $("#recordRowOverdue_" + id).text());
+			$("#updateAdvanced").attr("value", $("#recordRowAdvanced_" + id).text());
+			$("#updateOpenConsignment").attr("value", $("#recordRowOpenConsignment_" + id).text());
+			$("#updateDueConsignment").attr("value", $("#recordRowDueConsignment_" + id).text());
+			$("#updateNewConsignment").attr("value", $("#recordRowNewConsignment_" + id).text());
+			$("#updateSales").attr("value", $("#recordRowSales_" + id).text());
+			$("#updateExpense").attr("value", $("#recordRowExpense_" + id).text());
+			$("#updateDeposit").attr("value", $("#recordRowDeposit_" + id).text());
+			$("#updatePcoh").attr("value", $("#recordRowPcoh_" + id).text());
+			$("#updateAcoh").attr("value", $("#recordRowAcoh_" + id).text());
+			$("#updateDiff").attr("value", $("#recordRowDiff_" + id).text());
+			$('[name=updateDiscrepancyType]').val($('#recordRowDiscrepancyType_' + id).text());
+			$('[name=updateDiscrepancyCategory]').val($('#recordRowDiscrepancyCategory_' + id).text());
+			$("#updateDiscrepancyAmount").attr("value", $("#recordRowDiscrepancyAmount_" + id).text());
+			$("#updateAdditionalInformation").attr("value", $("#recordRowAdditionalInformation_" + id).text());
+			$("#successUpdateModalNotificationDiv").css('display','none');
 			$('#successUpdateModalNotificationMessage').text("");
 		});
 
@@ -457,11 +592,18 @@
 			var sales = $("#updateSales").val();
 			var expense = $("#updateExpense").val();
 			var deposit = $("#updateDeposit").val();
+			var pcoh = $("#updatePcoh").val();
+			var acoh = $("#updateAcoh").val();
+			var diff = $("#updateDiff").val();
+			var discrepancyType = $("#updateDiscrepancyType").val();
+			var discrepancyCategory = $("#updateDiscrepancyCategory").val();
+			var discrepancyAmount = $("#updateDiscrepancyAmount").val();
+			var additionalInformation = $("#updateAdditionalInformation").val().trim();
 			if (result == "success") {
 				$('#updateRecordModal').modal('toggle');
 				$('#successNotificationDiv').css('display', 'block');
 				$('#successNotificationMessage').text("Successfully updated record");
-				updateRecordToTable(id, branch, date, consignment, overdue, advanced, openConsignment, dueConsignment, newConsignment, sales, expense, deposit);
+				updateRecordToTable(id, branch, date, consignment, overdue, advanced, openConsignment, dueConsignment, newConsignment, sales, expense, deposit, pcoh, acoh, diff, discrepancyType, discrepancyCategory, discrepancyAmount, additionalInformation);
 			} else {
 				$('#successUpdateModalNotificationDiv').css('display', 'block');
 				$('#successUpdateModalNotificationMessage').text(result);
@@ -482,6 +624,13 @@
 			var sales = $("#updateSales").val();
 			var expense = $("#updateExpense").val();
 			var deposit = $("#updateDeposit").val();
+			var pcoh = $("#updatePcoh").val();
+			var acoh = $("#updateAcoh").val();
+			var diff = $("#updateDiff").val();
+			var discrepancyType = $("#updateDiscrepancyType").val();
+			var discrepancyCategory = $("#updateDiscrepancyCategory").val();
+			var discrepancyAmount = $("#updateDiscrepancyAmount").val();
+			var additionalInformation = $("#updateAdditionalInformation").val().trim();
 			$.ajax({
 				type : 'POST',
 				url : 'updateRecord',
@@ -497,7 +646,14 @@
 					'newConsignment' : newConsignment, 
 					'sales' : sales,
 					'expense' : expense,
-					'deposit' : deposit 
+					'deposit' : deposit, 
+					'pcoh' : pcoh,
+					'acoh' : acoh,
+					'diff' : diff,
+					'discrepancyType' : discrepancyType,
+					'discrepancyCategory' : discrepancyCategory,
+					'discrepancyAmount' : discrepancyAmount,
+					'additionalInformation' : additionalInformation
 				},
 				async : false,
 				success : function(result) {
@@ -511,7 +667,7 @@
 			return validationResult;
 		}
 
-		function updateRecordToTable(id, branch, date, consignment, overdue, advanced, openConsignment, dueConsignment, newConsignment, sales, expense, deposit) {
+		function updateRecordToTable(id, branch, date, consignment, overdue, advanced, openConsignment, dueConsignment, newConsignment, sales, expense, deposit, pcoh, acoh, diff, discrepancyType, discrepancyCategory, discrepancyAmount, additionalInformation) {
 			$('#recordRowId_' + id).text(id);
 			$('#recordRowBranch_' + id).text(branch);
 			$('#recordRowDate_' + id).text(date);
@@ -524,6 +680,13 @@
 			$('#recordRowSales_' + id).text(sales);
 			$('#recordRowExpense_' + id).text(expense);
 			$('#recordRowDeposit_' + id).text(deposit);
+			$('#recordRowPcoh_' + id).text(pcoh);
+			$('#recordRowAcoh_' + id).text(acoh);
+			$('#recordRowDiff_' + id).text(diff);
+			$('#recordRowDiscrepancyType_' + id).text(discrepancyType);
+			$('#recordRowDiscrepancyCategory_' + id).text(discrepancyCategory);
+			$('#recordRowDiscrepancyAmount_' + id).text(discrepancyAmount);
+			$('#recordRowAdditionalInformation_' + id).text(additionalInformation);
 		}
 		
 		function sliceLength(field, size) {

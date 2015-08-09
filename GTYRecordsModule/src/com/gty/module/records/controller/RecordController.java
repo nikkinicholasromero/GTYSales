@@ -16,12 +16,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.gty.module.records.domain.Bank;
 import com.gty.module.records.domain.Branch;
+import com.gty.module.records.domain.Discrepancy;
 import com.gty.module.records.domain.Record;
 import com.gty.module.records.service.BankService;
 import com.gty.module.records.service.BranchService;
+import com.gty.module.records.service.DiscrepancyService;
 import com.gty.module.records.service.RecordService;
 import com.gty.module.records.utility.BankComparator;
 import com.gty.module.records.utility.BranchComparator;
+import com.gty.module.records.utility.DiscrepancyComparator;
 import com.gty.module.records.utility.JSONUtility;
 
 @Controller
@@ -41,6 +44,10 @@ public class RecordController {
 		Collections.sort(banks, new BankComparator());
 		modelAndView.addObject("banks", banks);
 
+		List<Discrepancy> discrepancies = DiscrepancyService.getAllDiscrepancies();
+		Collections.sort(discrepancies, new DiscrepancyComparator());
+		modelAndView.addObject("discrepancies", discrepancies);
+
 		return modelAndView;
 	}
 	@RequestMapping("/records")
@@ -57,6 +64,10 @@ public class RecordController {
 		List<Bank> banks = BankService.getAllBanks();
 		Collections.sort(banks, new BankComparator());
 		modelAndView.addObject("banks", banks);
+
+		List<Discrepancy> discrepancies = DiscrepancyService.getAllDiscrepancies();
+		Collections.sort(discrepancies, new DiscrepancyComparator());
+		modelAndView.addObject("discrepancies", discrepancies);
 
 		return modelAndView;
 	}

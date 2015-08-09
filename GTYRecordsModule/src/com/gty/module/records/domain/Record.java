@@ -17,6 +17,13 @@ public class Record {
 	private BigDecimal sales;
 	private BigDecimal expense;
 	private BigDecimal deposit;
+	private BigDecimal pcoh;
+	private BigDecimal acoh;
+	private BigDecimal diff;
+	private String discrepancyType;
+	private String discrepancyCategory;
+	private BigDecimal discrepancyAmount;
+	private String additionalInformation;
 	
 	public Record() {
 	}
@@ -60,6 +67,27 @@ public class Record {
 	public BigDecimal getDeposit() {
 		return deposit;
 	}
+	public BigDecimal getPcoh() {
+		return pcoh;
+	}
+	public BigDecimal getAcoh() {
+		return acoh;
+	}
+	public BigDecimal getDiff() {
+		return diff;
+	}
+	public String getDiscrepancyType() {
+		return discrepancyType;
+	}
+	public String getDiscrepancyCategory() {
+		return discrepancyCategory;
+	}
+	public BigDecimal getDiscrepancyAmount() {
+		return discrepancyAmount;
+	}
+	public String getAdditionalInformation() {
+		return additionalInformation;
+	}
 
 	public void setId(int id) {
 		this.id = id;
@@ -99,5 +127,26 @@ public class Record {
 	}
 	public void setDeposit(BigDecimal deposit) {
 		this.deposit = deposit;
+	}
+	public void setPcoh(BigDecimal pcoh) {
+		this.pcoh = pcoh;
+	}
+	public void setAcoh(BigDecimal acoh) {
+		this.acoh = acoh;
+	}
+	public void setDiff(BigDecimal diff) {
+		this.diff = diff;
+	}
+	public void setDiscrepancyType(String discrepancyType) {
+		this.discrepancyType = discrepancyType;
+	}
+	public void setDiscrepancyCategory(String discrepancyCategory) {
+		this.discrepancyCategory = discrepancyCategory;
+	}
+	public void setDiscrepancyAmount(BigDecimal discrepancyAmount) {
+		this.discrepancyAmount = discrepancyAmount;
+	}
+	public void setAdditionalInformation(String additionalInformation) {
+		this.additionalInformation = additionalInformation;
 	}
 }

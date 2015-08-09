@@ -353,7 +353,7 @@
 			$('#updateLocation').attr("value",$('#branchRowLocation_' + id).text());
 			$('#updateProprietor').attr("value",$('#branchRowProprietor_' + id).text());
 			$('#updateContactNumber').attr("value",$('#branchRowContactNumber_' + id).text());
-			$('#updateRemittanceBank').attr("value",$('#branchRowRemittanceBank_' + id).text());
+			$('[name=updateRemittanceBank]').val($('#branchRowRemittanceBank_' + id).text());
 			$('[name=updateStatus]').val($('#branchRowStatus_' + id).text());
 			$('#successUpdateModalNotificationDiv').css('display','none');
 			$('#successUpdateModalNotificationMessage').text("");
