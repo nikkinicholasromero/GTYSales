@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2015 at 04:20 AM
+-- Generation Time: Aug 09, 2015 at 02:02 PM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -68,22 +68,18 @@ CREATE TABLE IF NOT EXISTS `discrepancy` (
 
 CREATE TABLE IF NOT EXISTS `record` (
   `id` int(11) NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  `transaction_date` date NOT NULL,
-  `record_date` date NOT NULL,
-  `sales` decimal(10,0) NOT NULL,
-  `expense` decimal(10,0) NOT NULL,
-  `overdue` decimal(10,0) NOT NULL,
-  `advanced_payment` decimal(10,0) NOT NULL,
-  `new_members` int(11) NOT NULL,
-  `open_consignment` int(11) NOT NULL,
-  `new_consignment` int(11) NOT NULL,
-  `due_consignment` int(11) NOT NULL,
-  `consignment` int(11) NOT NULL,
-  `cash_on_hand` decimal(10,0) NOT NULL,
-  `cash_deposit` decimal(10,0) NOT NULL,
-  `cash_on_hand_difference` decimal(10,0) NOT NULL,
-  `additional_cash` decimal(10,0) NOT NULL
+  `branch` varchar(50) NOT NULL,
+  `bank` varchar(50) NOT NULL,
+  `date` date NOT NULL,
+  `consignment` int(11) NOT NULL DEFAULT '0',
+  `overdue` int(11) NOT NULL DEFAULT '0',
+  `advanced` int(11) NOT NULL DEFAULT '0',
+  `open_consignment` int(11) NOT NULL DEFAULT '0',
+  `due_consignment` int(11) NOT NULL DEFAULT '0',
+  `new_consignment` int(11) NOT NULL DEFAULT '0',
+  `sales` decimal(10,0) NOT NULL DEFAULT '0',
+  `expense` decimal(10,0) NOT NULL DEFAULT '0',
+  `deposit` decimal(10,0) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -114,7 +110,8 @@ ALTER TABLE `discrepancy`
 -- Indexes for table `record`
 --
 ALTER TABLE `record`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `branch` (`branch`,`date`);
 
 --
 -- AUTO_INCREMENT for dumped tables
