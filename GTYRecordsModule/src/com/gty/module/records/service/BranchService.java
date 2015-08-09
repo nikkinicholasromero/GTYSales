@@ -48,42 +48,30 @@ public final class BranchService {
 	}
 
 	private static String validateNewBranch(Branch branch) {
-		String validationResult = "";
+		String validationResult = "success";
 
 		BranchDAO dao = BeanFactory.getBranchDAO();
 		Branch existingBranch = dao.getBranchByBranchName(branch.getName());
 		if (existingBranch != null) {
-			validationResult += "Branch name already exists. ";
+			validationResult = "Branch name already exists. ";
+		} else if ("".equalsIgnoreCase(branch.getName())) {
+			validationResult = "Branch name is mandatory. ";
 		}
-		
-		if("".equalsIgnoreCase(branch.getName())) {
-			validationResult += "Branch name is mandatory. ";
-		}
-		
-		if (validationResult.equals("")) {
-			return "success";
-		} else {
-			return validationResult;
-		}
+
+		return validationResult;
 	}
 
 	private static String validateBranchUpdate(Branch branch) {
-		String validationResult = "";
+		String validationResult = "success";
 
 		BranchDAO dao = BeanFactory.getBranchDAO();
 		Branch existingBranch = dao.getBranchByBranchName(branch.getName());
 		if ((existingBranch != null) && (existingBranch.getId() != branch.getId())) {
-			validationResult += "Branch name already exists. ";
-		}
-		
-		if("".equalsIgnoreCase(branch.getName())) {
-			validationResult += "Branch name is mandatory. ";
+			validationResult = "Branch name already exists. ";
+		} else if ("".equalsIgnoreCase(branch.getName())) {
+			validationResult = "Branch name is mandatory. ";
 		}
 
-		if (validationResult.equals("")) {
-			return "success";
-		} else {
-			return validationResult;
-		}
+		return validationResult;
 	}
 }

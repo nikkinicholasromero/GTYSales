@@ -48,43 +48,30 @@ public final class DiscrepancyService {
 	}
 
 	private static String validateNewDiscrepancy(Discrepancy discrepancy) {
-		String validationResult = "";
+		String validationResult = "success";
 
 		DiscrepancyDAO dao = BeanFactory.getDiscrepancyDAO();
 		Discrepancy existingDiscrepancy = dao.getDiscrepancyByDiscrepancyType(discrepancy.getType());
 		if (existingDiscrepancy != null) {
-			validationResult += "Discrepancy type already exists. ";
-		}
-		
-		if("".equalsIgnoreCase(discrepancy.getType())) {
-			validationResult += "Discrepancy type is mandatory. ";
+			validationResult = "Discrepancy type already exists. ";
+		} else if ("".equalsIgnoreCase(discrepancy.getType())) {
+			validationResult = "Discrepancy type is mandatory. ";
 		}
 
-
-		if (validationResult.equals("")) {
-			return "success";
-		} else {
-			return validationResult;
-		}
+		return validationResult;
 	}
 
 	private static String validateDiscrepancyUpdate(Discrepancy discrepancy) {
-		String validationResult = "";
+		String validationResult = "success";
 
 		DiscrepancyDAO dao = BeanFactory.getDiscrepancyDAO();
 		Discrepancy existingDiscrepancy = dao.getDiscrepancyByDiscrepancyType(discrepancy.getType());
 		if ((existingDiscrepancy != null) && (existingDiscrepancy.getId() != discrepancy.getId())) {
-			validationResult += "Discrepancy type already exists. ";
-		}
-		
-		if("".equalsIgnoreCase(discrepancy.getType())) {
-			validationResult += "Discrepancy type is mandatory. ";
+			validationResult = "Discrepancy type already exists. ";
+		} else if ("".equalsIgnoreCase(discrepancy.getType())) {
+			validationResult = "Discrepancy type is mandatory. ";
 		}
 
-		if (validationResult.equals("")) {
-			return "success";
-		} else {
-			return validationResult;
-		}
+		return validationResult;
 	}
 }

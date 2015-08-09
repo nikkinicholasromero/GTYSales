@@ -1,5 +1,6 @@
 package com.gty.module.records.domain;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 public class Record {
@@ -13,9 +14,9 @@ public class Record {
 	private int openConsignment;
 	private int dueConsignment;
 	private int newConsignment;
-	private Double sales;
-	private Double expense;
-	private Double deposit;
+	private BigDecimal sales;
+	private BigDecimal expense;
+	private BigDecimal deposit;
 	
 	public Record() {
 	}
@@ -50,13 +51,13 @@ public class Record {
 	public int getNewConsignment() {
 		return newConsignment;
 	}
-	public Double getSales() {
+	public BigDecimal getSales() {
 		return sales;
 	}
-	public Double getExpense() {
+	public BigDecimal getExpense() {
 		return expense;
 	}
-	public Double getDeposit() {
+	public BigDecimal getDeposit() {
 		return deposit;
 	}
 
@@ -90,13 +91,13 @@ public class Record {
 	public void setNewConsignment(int newConsignment) {
 		this.newConsignment = newConsignment;
 	}
-	public void setSales(Double sales) {
+	public void setSales(BigDecimal sales) {
 		this.sales = sales;
 	}
-	public void setExpense(Double expense) {
+	public void setExpense(BigDecimal expense) {
 		this.expense = expense;
 	}
-	public void setDeposit(Double deposit) {
+	public void setDeposit(BigDecimal deposit) {
 		this.deposit = deposit;
 	}
 }

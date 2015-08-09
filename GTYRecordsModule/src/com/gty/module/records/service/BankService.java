@@ -48,42 +48,30 @@ public final class BankService {
 	}
 
 	private static String validateNewBank(Bank bank) {
-		String validationResult = "";
+		String validationResult = "success";
 
 		BankDAO dao = BeanFactory.getBankDAO();
 		Bank existingBank = dao.getBankByBankName(bank.getName());
 		if (existingBank != null) {
-			validationResult += "Bank name already exists. ";
-		}
-		
-		if("".equalsIgnoreCase(bank.getName())) {
-			validationResult += "Bank name is mandatory. ";
+			validationResult = "Bank name already exists. ";
+		} else if ("".equalsIgnoreCase(bank.getName())) {
+			validationResult = "Bank name is mandatory. ";
 		}
 
-		if (validationResult.equals("")) {
-			return "success";
-		} else {
-			return validationResult;
-		}
+		return validationResult;
 	}
 
 	private static String validateBankUpdate(Bank bank) {
-		String validationResult = "";
+		String validationResult = "success";
 
 		BankDAO dao = BeanFactory.getBankDAO();
 		Bank existingBank = dao.getBankByBankName(bank.getName());
 		if ((existingBank != null) && (existingBank.getId() != bank.getId())) {
-			validationResult += "Bank name already exists. ";
-		}
-		
-		if("".equalsIgnoreCase(bank.getName())) {
-			validationResult += "Bank name is mandatory. ";
+			validationResult = "Bank name already exists. ";
+		} else if ("".equalsIgnoreCase(bank.getName())) {
+			validationResult = "Bank name is mandatory. ";
 		}
 
-		if (validationResult.equals("")) {
-			return "success";
-		} else {
-			return validationResult;
-		}
+		return validationResult;
 	}
 }

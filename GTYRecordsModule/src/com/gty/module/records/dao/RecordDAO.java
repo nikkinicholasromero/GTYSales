@@ -35,6 +35,13 @@ public class RecordDAO implements RowMapper<Record> {
 			return null;
 		}
 	}
+	
+	public Record getLatestRecordByBranchId(int id) {
+		String SQL = "select * from record order by date desc limit 1";
+		Record record = jdbcTemplate.queryForObject(SQL, new Object[] { id }, this);
+		return record;
+	}
+	
 	public List<Record> getAllRecords() {
 		String SQL = "select * from record";
 		List<Record> records = jdbcTemplate.query(SQL, this);
@@ -64,9 +71,9 @@ public class RecordDAO implements RowMapper<Record> {
 		record.setOpenConsignment(rs.getInt("open_consignment"));
 		record.setDueConsignment(rs.getInt("due_consignment"));
 		record.setNewConsignment(rs.getInt("new_consignment"));
-		record.setSales(rs.getDouble("sales"));
-		record.setExpense(rs.getDouble("expense"));
-		record.setDeposit(rs.getDouble("deposit"));
+		record.setSales(rs.getBigDecimal("sales"));
+		record.setExpense(rs.getBigDecimal("expense"));
+		record.setDeposit(rs.getBigDecimal("deposit"));
 		return record;
 	}
 }

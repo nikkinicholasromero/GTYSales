@@ -117,43 +117,43 @@
 							<div class="row" style="margin-bottom: 5px">
 								<div class="col-md-4 col-xs-12">
 									<label>Consignment</label>
-									<input type="number" class="form-control input-sm" id="addConsignment" name="addConsignment" min="0">
+									<input type="number" class="form-control input-sm" id="addConsignment" name="addConsignment" min="0" max="99999999999" oninput="sliceLength(this, 11)">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Overdue</label>
-									<input type="number" class="form-control input-sm" id="addOverdue" name="addOverdue" min="0">
+									<input type="number" class="form-control input-sm" id="addOverdue" name="addOverdue" min="0" max="99999999999" oninput="sliceLength(this, 11)">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Advanced</label>
-									<input type="number" class="form-control input-sm" id="addAdvanced" name="addAdvanced" min="0">
+									<input type="number" class="form-control input-sm" id="addAdvanced" name="addAdvanced" min="0" max="99999999999" oninput="sliceLength(this, 11)">
 								</div>
 							</div>
 							<div class="row" style="margin-bottom: 5px">
 								<div class="col-md-4 col-xs-12">
 									<label>Open Consignment</label>
-									<input type="number" class="form-control input-sm" id="addOpenConsignment" name="addOpenConsignment" min="0">
+									<input type="number" class="form-control input-sm" id="addOpenConsignment" name="addOpenConsignment" min="0" max="99999999999" oninput="sliceLength(this, 11)">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Due Consignment</label>
-									<input type="number" class="form-control input-sm" id="addDueConsignment" name="addDueConsignment" min="0">
+									<input type="number" class="form-control input-sm" id="addDueConsignment" name="addDueConsignment" min="0" max="99999999999" oninput="sliceLength(this, 11)">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>New Consignment</label>
-									<input type="number" class="form-control input-sm" id="addNewConsignment" name="addNewConsignment" min="0">
+									<input type="number" class="form-control input-sm" id="addNewConsignment" name="addNewConsignment" min="0" max="99999999999" oninput="sliceLength(this, 11)">
 								</div>
 							</div>
 							<div class="row" style="margin-bottom: 5px">
 								<div class="col-md-4 col-xs-12">
 									<label>Sales</label>
-									<input type="number" class="form-control input-sm" id="addSales" name="addSales" min="0" step="0.01">
+									<input type="number" class="form-control input-sm" id="addSales" name="addSales" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Expense</label>
-									<input type="number" class="form-control input-sm" id="addExpense" name="addExpense" min="0" step="0.01">
+									<input type="number" class="form-control input-sm" id="addExpense" name="addExpense" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Deposit</label>
-									<input type="number" class="form-control input-sm" id="addDeposit" name="addDeposit" min="0" step="0.01">
+									<input type="number" class="form-control input-sm" id="addDeposit" name="addDeposit" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
 								</div>
 							</div>
 						</div>
@@ -207,43 +207,43 @@
 							<div class="row" style="margin-bottom: 5px">
 								<div class="col-md-4 col-xs-12">
 									<label>Consignment</label>
-									<input type="number" class="form-control input-sm" id="updateConsignment" name="updateConsignment" min="0">
+									<input type="number" class="form-control input-sm" id="updateConsignment" name="updateConsignment" min="0" max="99999999999" oninput="sliceLength(this, 11)">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Overdue</label>
-									<input type="number" class="form-control input-sm" id="updateOverdue" name="updateOverdue" min="0">
+									<input type="number" class="form-control input-sm" id="updateOverdue" name="updateOverdue" min="0" max="99999999999" oninput="sliceLength(this, 11)">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Advanced</label>
-									<input type="number" class="form-control input-sm" id="updateAdvanced" name="updateAdvanced" min="0">
+									<input type="number" class="form-control input-sm" id="updateAdvanced" name="updateAdvanced" min="0" max="99999999999" oninput="sliceLength(this, 11)">
 								</div>
 							</div>
 							<div class="row" style="margin-bottom: 5px">
 								<div class="col-md-4 col-xs-12">
 									<label>Open Consignment</label>
-									<input type="number" class="form-control input-sm" id="updateOpenConsignment" name="updateOpenConsignment" min="0">
+									<input type="number" class="form-control input-sm" id="updateOpenConsignment" name="updateOpenConsignment" min="0" max="99999999999" oninput="sliceLength(this, 11)">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Due Consignment</label>
-									<input type="number" class="form-control input-sm" id="updateDueConsignment" name="updateDueConsignment" min="0">
+									<input type="number" class="form-control input-sm" id="updateDueConsignment" name="updateDueConsignment" min="0" max="99999999999" oninput="sliceLength(this, 11)">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>New Consignment</label>
-									<input type="number" class="form-control input-sm" id="updateNewConsignment" name="updateNewConsignment" min="0">
+									<input type="number" class="form-control input-sm" id="updateNewConsignment" name="updateNewConsignment" min="0" max="99999999999" oninput="sliceLength(this, 11)">
 								</div>
 							</div>
 							<div class="row" style="margin-bottom: 5px">
 								<div class="col-md-4 col-xs-12">
 									<label>Sales</label>
-									<input type="number" class="form-control input-sm" id="updateSales" name="updateSales" min="0" step="0.01">
+									<input type="number" class="form-control input-sm" id="updateSales" name="updateSales" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Expense</label>
-									<input type="number" class="form-control input-sm" id="updateExpense" name="updateExpense" min="0" step="0.01">
+									<input type="number" class="form-control input-sm" id="updateExpense" name="updateExpense" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Deposit</label>
-									<input type="number" class="form-control input-sm" id="updateDeposit" name="updateDeposit" min="0" step="0.01">
+									<input type="number" class="form-control input-sm" id="updateDeposit" name="updateDeposit" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
 								</div>
 							</div>
 						</div>
@@ -548,6 +548,12 @@
 			$('#recordRowSales_' + id).text(sales);
 			$('#recordRowExpense_' + id).text(expense);
 			$('#recordRowDeposit_' + id).text(deposit);
+		}
+		
+		function sliceLength(field, size) {
+		    if (field.value.length > size) {
+		        field.value = field.value.slice(0, size); 
+		    }
 		}
 		
 	</script>
