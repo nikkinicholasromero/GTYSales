@@ -63,6 +63,11 @@ public class RecordDAO implements RowMapper<Record> {
 		jdbcTemplate.update(SQL, newBankName, currentBankName);
 	}
 
+	public void updateBranchesOfRecords(String currentBranchName, String newBranchName) {
+		String SQL = "update record set branch = ? where branch = ?";
+		jdbcTemplate.update(SQL, newBranchName, currentBranchName);
+	}
+
 	@Override
 	public Record mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Record record = new Record();

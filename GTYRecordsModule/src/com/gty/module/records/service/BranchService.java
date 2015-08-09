@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.gty.module.records.beanfactory.BeanFactory;
 import com.gty.module.records.dao.BranchDAO;
+import com.gty.module.records.dao.RecordDAO;
 import com.gty.module.records.domain.Branch;
 
 public final class BranchService {
@@ -29,8 +30,8 @@ public final class BranchService {
 		String validationResult = validateNewBranch(branch);
 
 		if (validationResult.equalsIgnoreCase("success")) {
-			BranchDAO dao = BeanFactory.getBranchDAO();
-			dao.addBranch(branch);
+			BranchDAO branchDao = BeanFactory.getBranchDAO();
+			branchDao.addBranch(branch);
 		}
 
 		return validationResult;
@@ -40,8 +41,16 @@ public final class BranchService {
 		String validationResult = validateBranchUpdate(branch);
 
 		if (validationResult.equalsIgnoreCase("success")) {
-			BranchDAO dao = BeanFactory.getBranchDAO();
-			dao.updateBranch(branch);
+			BranchDAO branchDao = BeanFactory.getBranchDAO();
+			
+			Branch currentBranch = branchDao.getBranchById(branch.getId());
+			String currentBranchName = currentBranch.getName();
+			String newBranchName = branch.getName();
+			
+			RecordDAO recordDao = BeanFactory.getRecordDAO();
+			recordDao.updateBranchesOfRecords(currentBranchName, newBranchName);
+			
+			branchDao.updateBranch(branch);
 		}
 
 		return validationResult;
