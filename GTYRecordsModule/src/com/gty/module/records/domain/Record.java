@@ -4,23 +4,18 @@ import java.sql.Date;
 
 public class Record {
 	private int id;
-	private int branchId;
-	private String branchName;
-	private Date transactionDate;
-	private Date recordDate;
+	private String branch;
+	private String bank;
+	private Date date;
+	private int consignment;
+	private int overdue;
+	private int advanced;
+	private int openConsignment;
+	private int dueConsignment;
+	private int newConsignment;
 	private Double sales;
 	private Double expense;
-	private Double overdue;
-	private Double advancedPayments;
-	private int newMembers;
-	private int openConsignment;
-	private int newConsignment;
-	private int dueConsignment;
-	private int consignment;
-	private Double cashOnHand;
-	private Double cashDeposit;
-	private Double cashOnHandDifference;
-	private Double additionalCash;
+	private Double deposit;
 	
 	public Record() {
 	}
@@ -28,17 +23,32 @@ public class Record {
 	public int getId() {
 		return id;
 	}
-	public int getBranchId() {
-		return branchId;
+	public String getBranch() {
+		return branch;
 	}
-	public String getBranchName() {
-		return branchName;
+	public String getBank() {
+		return bank;
 	}
-	public Date getTransactionDate() {
-		return transactionDate;
+	public Date getDate() {
+		return date;
 	}
-	public Date getRecordDate() {
-		return recordDate;
+	public int getConsignment() {
+		return consignment;
+	}
+	public int getOverdue() {
+		return overdue;
+	}
+	public int getAdvanced() {
+		return advanced;
+	}
+	public int getOpenConsignment() {
+		return openConsignment;
+	}
+	public int getDueConsignment() {
+		return dueConsignment;
+	}
+	public int getNewConsignment() {
+		return newConsignment;
 	}
 	public Double getSales() {
 		return sales;
@@ -46,53 +56,39 @@ public class Record {
 	public Double getExpense() {
 		return expense;
 	}
-	public Double getOverdue() {
-		return overdue;
+	public Double getDeposit() {
+		return deposit;
 	}
-	public Double getAdvancedPayments() {
-		return advancedPayments;
-	}
-	public int getNewMembers() {
-		return newMembers;
-	}
-	public int getOpenConsignment() {
-		return openConsignment;
-	}
-	public int getNewConsignment() {
-		return newConsignment;
-	}
-	public int getDueConsignment() {
-		return dueConsignment;
-	}
-	public int getConsignment() {
-		return consignment;
-	}
-	public Double getCashOnHand() {
-		return cashOnHand;
-	}
-	public Double getCashDeposit() {
-		return cashDeposit;
-	}
-	public Double getCashOnHandDifference() {
-		return cashOnHandDifference;
-	}
-	public Double getAdditionalCash() {
-		return additionalCash;
-	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public void setBranchId(int branchId) {
-		this.branchId = branchId;
+	public void setBranch(String branch) {
+		this.branch = branch;
 	}
-	public void setBranchName(String branchName) {
-		this.branchName = branchName;
+	public void setBank(String bank) {
+		this.bank = bank;
 	}
-	public void setTransactionDate(Date transactionDate) {
-		this.transactionDate = transactionDate;
+	public void setDate(Date date) {
+		this.date = date;
 	}
-	public void setRecordDate(Date recordDate) {
-		this.recordDate = recordDate;
+	public void setConsignment(int consignment) {
+		this.consignment = consignment;
+	}
+	public void setOverdue(int overdue) {
+		this.overdue = overdue;
+	}
+	public void setAdvanced(int advanced) {
+		this.advanced = advanced;
+	}
+	public void setOpenConsignment(int openConsignment) {
+		this.openConsignment = openConsignment;
+	}
+	public void setDueConsignment(int dueConsignment) {
+		this.dueConsignment = dueConsignment;
+	}
+	public void setNewConsignment(int newConsignment) {
+		this.newConsignment = newConsignment;
 	}
 	public void setSales(Double sales) {
 		this.sales = sales;
@@ -100,37 +96,7 @@ public class Record {
 	public void setExpense(Double expense) {
 		this.expense = expense;
 	}
-	public void setOverdue(Double overdue) {
-		this.overdue = overdue;
-	}
-	public void setAdvancedPayments(Double advancedPayments) {
-		this.advancedPayments = advancedPayments;
-	}
-	public void setNewMembers(int newMembers) {
-		this.newMembers = newMembers;
-	}
-	public void setOpenConsignments(int openConsignment) {
-		this.openConsignment = openConsignment;
-	}
-	public void setNewConsignment(int newConsignment) {
-		this.newConsignment = newConsignment;
-	}
-	public void setDueConsignment(int dueConsignment) {
-		this.dueConsignment = dueConsignment;
-	}
-	public void setConsignment(int consignment) {
-		this.consignment = consignment;
-	}
-	public void setCashOnHand(Double cashOnHand) {
-		this.cashOnHand = cashOnHand;
-	}
-	public void setCashDeposit(Double cashDeposit) {
-		this.cashDeposit = cashDeposit;
-	}
-	public void setCashOnHandDifference(Double cashOnHandDifference) {
-		this.cashOnHandDifference = cashOnHandDifference;
-	}
-	public void setAdditionalCash(Double additionalCash) {
-		this.additionalCash = additionalCash;
+	public void setDeposit(Double deposit) {
+		this.deposit = deposit;
 	}
 }
