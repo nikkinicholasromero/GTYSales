@@ -41,7 +41,7 @@ public final class BranchService {
 
 		if (validationResult.equalsIgnoreCase("success")) {
 			BranchDAO dao = BeanFactory.getBranchDAO();
-			dao.udpateBranch(branch);
+			dao.updateBranch(branch);
 		}
 
 		return validationResult;

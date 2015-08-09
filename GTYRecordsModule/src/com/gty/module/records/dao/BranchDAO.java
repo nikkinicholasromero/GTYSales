@@ -25,6 +25,12 @@ public class BranchDAO implements RowMapper<Branch> {
 		return branch;
 	}
 
+	public Branch getBranchByName(String name) {
+		String SQL = "select * from branch where name = ?";
+		Branch branch = jdbcTemplate.queryForObject(SQL, new Object[] { name }, this);
+		return branch;
+	}
+
 	public Branch getBranchByBranchName(String name) {
 		try {
 			String SQL = "select * from branch where name = ?";
@@ -46,9 +52,14 @@ public class BranchDAO implements RowMapper<Branch> {
 		jdbcTemplate.update(SQL, branch.getName(), branch.getLocation(), branch.getRemittanceBank(), branch.getProprietor(), branch.getContactNumber(), branch.getStatus());
 	}
 
-	public void udpateBranch(Branch branch) {
+	public void updateBranch(Branch branch) {
 		String SQL = "update branch set name = ?, location = ?, remittance_bank = ?, proprietor = ?, contact_number = ?, status = ? where id = ?";
 		jdbcTemplate.update(SQL, branch.getName(), branch.getLocation(), branch.getRemittanceBank(), branch.getProprietor(), branch.getContactNumber(), branch.getStatus(), branch.getId());
+	}
+
+	public void updateBankOfBranches(String currentBankName, String newBankName) {
+		String SQL = "update branch set remittance_bank = ? where remittance_bank = ?";
+		jdbcTemplate.update(SQL, newBankName, currentBankName);
 	}
 
 	@Override

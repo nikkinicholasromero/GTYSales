@@ -5,7 +5,9 @@ import java.sql.Date;
 import java.util.List;
 
 import com.gty.module.records.beanfactory.BeanFactory;
+import com.gty.module.records.dao.BranchDAO;
 import com.gty.module.records.dao.RecordDAO;
+import com.gty.module.records.domain.Branch;
 import com.gty.module.records.domain.Record;
 
 public final class RecordService {
@@ -31,8 +33,12 @@ public final class RecordService {
 		String validationResult = validateNewRecord(record);
 
 		if (validationResult.equalsIgnoreCase("success")) {
-			RecordDAO dao = BeanFactory.getRecordDAO();
-			dao.addRecord(record);
+			BranchDAO branchDao = BeanFactory.getBranchDAO();
+			Branch branch = branchDao.getBranchByBranchName(record.getBranch());
+			record.setBank(branch.getRemittanceBank());
+			
+			RecordDAO recordDao = BeanFactory.getRecordDAO();
+			recordDao.addRecord(record);
 		}
 
 		return validationResult;

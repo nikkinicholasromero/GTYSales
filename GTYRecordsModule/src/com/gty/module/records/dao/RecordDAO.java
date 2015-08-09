@@ -58,6 +58,11 @@ public class RecordDAO implements RowMapper<Record> {
 		jdbcTemplate.update(SQL, record.getBranch(), record.getBank(), record.getDate(), record.getConsignment(), record.getOverdue(), record.getAdvanced(), record.getOpenConsignment(), record.getDueConsignment(), record.getNewConsignment(), record.getSales(), record.getExpense(), record.getDeposit(), record.getId());
 	}
 
+	public void updateBankOfRecords(String currentBankName, String newBankName) {
+		String SQL = "update record set bank = ? where bank = ?";
+		jdbcTemplate.update(SQL, newBankName, currentBankName);
+	}
+
 	@Override
 	public Record mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Record record = new Record();

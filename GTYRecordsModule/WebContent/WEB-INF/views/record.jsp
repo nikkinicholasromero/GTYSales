@@ -93,19 +93,11 @@
 								</div>
 							</div>
 							<div class="row" style="margin-bottom: 5px">
-								<div class="col-md-4 col-xs-12">
+								<div class="col-md-8 col-xs-12">
 									<label>Branch</label>
 									<select class="form-control input-sm" id="addBranch" name="addBranch">
 										<c:forEach items="${branches}" var="branch">
 											<option value="${branch.name}">${branch.name}</option>
-										</c:forEach>
-									</select>
-								</div>
-								<div class="col-md-4 col-xs-12">
-									<label>Bank</label>
-									<select class="form-control input-sm" id="addBank" name="addBank">
-										<c:forEach items="${banks}" var="bank">
-											<option value="${bank.name}">${bank.name}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -183,19 +175,11 @@
 							</div>
 							<div class="row" style="margin-bottom: 5px">
 								<input type="hidden" class="form-control input-sm" id="updateId" name="updateId">
-								<div class="col-md-4 col-xs-12">
+								<div class="col-md-8 col-xs-12">
 									<label>Branch</label>
 									<select class="form-control input-sm" id="updateBranch" name="updateBranch">
 										<c:forEach items="${branches}" var="branch">
 											<option value="${branch.name}">${branch.name}</option>
-										</c:forEach>
-									</select>
-								</div>
-								<div class="col-md-4 col-xs-12">
-									<label>Bank</label>
-									<select class="form-control input-sm" id="updateBank" name="updateBank">
-										<c:forEach items="${banks}" var="bank">
-											<option value="${bank.name}">${bank.name}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -325,7 +309,6 @@
 
 		$('#addRecordModal').on('show.bs.modal', function(e) {
 			$("#addBranch").val($("#addBranch option:first").val());
-			$("#addBank").val($("#addBank option:first").val());
 			$('#addDate').attr('value', getDateToday());
 			$('#addConsignment').val("0");
 			$('#addOverdue').val("0");
@@ -366,7 +349,6 @@
 		function insertNewRecord() {
 			var validationResult = "";
 			var branch = $("#addBranch").val();
-			var bank = $("#addBank").val();
 			var date = $("#addDate").val();
 			var consignment = $("#addConsignment").val();
 			var overdue = $("#addOverdue").val();
@@ -382,7 +364,6 @@
 				url : 'addNewRecord',
 				data : {
 					'branch' : branch,
-					'bank' : bank,
 					'date' : date, 
 					'consignment' : consignment,
 					'overdue' : overdue,
@@ -448,7 +429,6 @@
 			var id = $(e.relatedTarget).data('id');
 			$('#updateId').attr("value", $('#recordRowId_' + id).text());
 			$("[name=updateBranch]").val($('#recordRowBranch_' + id).text());
-			$("[name=updateBank]").val($('#recordRowBank_' + id).text());
 			$("#updateDate").attr('value', $('#recordRowDate_' + id).text());
 			$("#updateConsignment").attr("value", $('#recordRowConsignment_' + id).text());
 			$("#updateOverdue").attr("value", $('#recordRowOverdue_' + id).text());
@@ -467,7 +447,6 @@
 			var result = updateExistingRecord();
 			var id = $("#updateId").val();
 			var branch = $("#updateBranch").val();
-			var bank = $("#updateBank").val();
 			var date = $("#updateDate").val();
 			var consignment = $("#updateConsignment").val();
 			var overdue = $("#updateOverdue").val();
@@ -482,7 +461,7 @@
 				$('#updateRecordModal').modal('toggle');
 				$('#successNotificationDiv').css('display', 'block');
 				$('#successNotificationMessage').text("Successfully updated record");
-				updateRecordToTable(id, branch, bank, date, consignment, overdue, advanced, openConsignment, dueConsignment, newConsignment, sales, expense, deposit);
+				updateRecordToTable(id, branch, date, consignment, overdue, advanced, openConsignment, dueConsignment, newConsignment, sales, expense, deposit);
 			} else {
 				$('#successUpdateModalNotificationDiv').css('display', 'block');
 				$('#successUpdateModalNotificationMessage').text(result);
@@ -493,7 +472,6 @@
 			var validationResult = "";
 			var id = $("#updateId").val();
 			var branch = $("#updateBranch").val();
-			var bank = $("#updateBank").val();
 			var date = $("#updateDate").val();
 			var consignment = $("#updateConsignment").val();
 			var overdue = $("#updateOverdue").val();
@@ -510,7 +488,6 @@
 				data : {
 					'id' : id,
 					'branch' : branch,
-					'bank' : bank,
 					'date' : date, 
 					'consignment' : consignment,
 					'overdue' : overdue,
@@ -534,10 +511,9 @@
 			return validationResult;
 		}
 
-		function updateRecordToTable(id, branch, bank, date, consignment, overdue, advanced, openConsignment, dueConsignment, newConsignment, sales, expense, deposit) {
+		function updateRecordToTable(id, branch, date, consignment, overdue, advanced, openConsignment, dueConsignment, newConsignment, sales, expense, deposit) {
 			$('#recordRowId_' + id).text(id);
 			$('#recordRowBranch_' + id).text(branch);
-			$('#recordRowBank_' + id).text(bank);
 			$('#recordRowDate_' + id).text(date);
 			$('#recordRowConsignment_' + id).text(consignment);
 			$('#recordRowOverdue_' + id).text(overdue);

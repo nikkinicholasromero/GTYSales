@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.gty.module.records.beanfactory.BeanFactory;
 import com.gty.module.records.dao.BankDAO;
+import com.gty.module.records.dao.BranchDAO;
+import com.gty.module.records.dao.RecordDAO;
 import com.gty.module.records.domain.Bank;
 
 public final class BankService {
@@ -40,8 +42,18 @@ public final class BankService {
 		String validationResult = validateBankUpdate(bank);
 
 		if (validationResult.equalsIgnoreCase("success")) {
-			BankDAO dao = BeanFactory.getBankDAO();
-			dao.updateBank(bank);
+			BankDAO bankDao = BeanFactory.getBankDAO();
+			Bank currentBank = bankDao.getBankById(bank.getId());
+			String currentBankName = currentBank.getName();
+			String newBankName= bank.getName();
+			
+			BranchDAO branchDao = BeanFactory.getBranchDAO();
+			branchDao.updateBankOfBranches(currentBankName, newBankName);
+			
+			RecordDAO recordDao = BeanFactory.getRecordDAO();
+			recordDao.updateBankOfRecords(currentBankName, newBankName);
+			
+			bankDao.updateBank(bank);
 		}
 
 		return validationResult;
