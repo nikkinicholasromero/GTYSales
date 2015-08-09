@@ -2,10 +2,15 @@ package com.gty.module.records.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +34,12 @@ import com.gty.module.records.utility.JSONUtility;
 
 @Controller
 public class RecordController {
+	@InitBinder
+	public void allowEmptyDateBinding(WebDataBinder binder) {
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat(), true));
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+	}
+	
 	@RequestMapping("/")
 	public ModelAndView showIndex() {
 		ModelAndView modelAndView = new ModelAndView("record");

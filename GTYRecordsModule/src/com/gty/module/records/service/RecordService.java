@@ -88,6 +88,8 @@ public final class RecordService {
 			validationResult = "Discrepancy amount should not be zero if Discrepancy Type is not 'None'";
 		} else if ((!record.getDiscrepancyType().equals("None")) && (record.getDiscrepancyCategory().equals("None"))) {
 			validationResult = "Discrepancy Type should not be 'None' if Discrepancy Category is not 'None'";
+		} else if (record.getDate() == null) {
+			validationResult = "Date should not be empty. ";
 		} 
 
 		return validationResult;
@@ -126,6 +128,8 @@ public final class RecordService {
 			validationResult = "Discrepancy amount should not be zero if Discrepancy Type is not 'None'";
 		} else if ((!record.getDiscrepancyType().equals("None")) && (record.getDiscrepancyCategory().equals("None"))) {
 			validationResult = "Discrepancy Type should not be 'None' if Discrepancy Category is not 'None'";
+		} else if (record.getDate() == null) {
+			validationResult = "Date should not be empty. ";
 		} 
 
 		return validationResult;
