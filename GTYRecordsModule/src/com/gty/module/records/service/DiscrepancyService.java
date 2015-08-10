@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.gty.module.records.beanfactory.BeanFactory;
 import com.gty.module.records.dao.DiscrepancyDAO;
+import com.gty.module.records.dao.RecordDAO;
 import com.gty.module.records.domain.Discrepancy;
 
 public final class DiscrepancyService {
@@ -40,8 +41,15 @@ public final class DiscrepancyService {
 		String validationResult = validateDiscrepancyUpdate(discrepancy);
 
 		if (validationResult.equalsIgnoreCase("success")) {
-			DiscrepancyDAO dao = BeanFactory.getDiscrepancyDAO();
-			dao.udpateDiscrepancy(discrepancy);
+			DiscrepancyDAO discrepancyDao = BeanFactory.getDiscrepancyDAO();
+			Discrepancy currentDiscrepancy = discrepancyDao.getDiscrepancyById(discrepancy.getId());
+			String currentDiscrepancyName = currentDiscrepancy.getType();
+			String newDiscrepancyName = discrepancy.getType();
+			
+			RecordDAO recordDao = BeanFactory.getRecordDAO();
+			recordDao.updateDiscrepancyOfRecords(currentDiscrepancyName, newDiscrepancyName);
+			
+			discrepancyDao.udpateDiscrepancy(discrepancy);
 		}
 
 		return validationResult;

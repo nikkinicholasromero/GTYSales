@@ -72,6 +72,11 @@ public class RecordDAO implements RowMapper<Record> {
 		jdbcTemplate.update(SQL, newBranchName, currentBranchName);
 	}
 
+	public void updateDiscrepancyOfRecords(String currentDiscrepancyName, String newDiscrepancyName) {
+		String SQL = "update record set discrepancy_category = ? where discrepancy_category = ?";
+		jdbcTemplate.update(SQL, newDiscrepancyName, currentDiscrepancyName);
+	}
+
 	@Override
 	public Record mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Record record = new Record();
