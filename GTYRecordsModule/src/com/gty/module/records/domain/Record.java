@@ -17,6 +17,7 @@ public class Record {
 	private BigDecimal sales;
 	private BigDecimal expense;
 	private BigDecimal deposit;
+	private BigDecimal ocoh;
 	private BigDecimal pcoh;
 	private BigDecimal acoh;
 	private BigDecimal diff;
@@ -66,6 +67,9 @@ public class Record {
 	}
 	public BigDecimal getDeposit() {
 		return deposit;
+	}
+	public BigDecimal getOcoh() {
+		return ocoh;
 	}
 	public BigDecimal getPcoh() {
 		return pcoh;
@@ -127,6 +131,9 @@ public class Record {
 	}
 	public void setDeposit(BigDecimal deposit) {
 		this.deposit = deposit;
+	}
+	public void setOcoh(BigDecimal ocoh) {
+		this.ocoh = ocoh;
 	}
 	public void setPcoh(BigDecimal pcoh) {
 		this.pcoh = pcoh;

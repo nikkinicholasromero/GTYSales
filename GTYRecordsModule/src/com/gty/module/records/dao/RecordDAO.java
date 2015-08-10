@@ -36,10 +36,14 @@ public class RecordDAO implements RowMapper<Record> {
 		}
 	}
 	
-	public Record getLatestRecordByBranchId(int id) {
-		String SQL = "select * from record order by date desc limit 1";
-		Record record = jdbcTemplate.queryForObject(SQL, new Object[] { id }, this);
-		return record;
+	public Record getPreviousRecord(Record record) {
+		try {
+			String SQL = "select * from record where branch = ? and date < ? order by date desc limit 1";
+			Record previousRecord = jdbcTemplate.queryForObject(SQL, new Object[] { record.getBranch(), record.getDate() }, this);
+			return previousRecord;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 	
 	public List<Record> getAllRecords() {
@@ -49,13 +53,13 @@ public class RecordDAO implements RowMapper<Record> {
 	}
 
 	public void addRecord(Record record) {
-		String SQL = "insert into record (branch, bank, date, consignment, overdue, advanced, open_consignment, due_consignment, new_consignment, sales, expense, deposit, pcoh, acoh, diff, discrepancy_type, discrepancy_category, discrepancy_amount, additional_information) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		jdbcTemplate.update(SQL, record.getBranch(), record.getBank(), record.getDate(), record.getConsignment(), record.getOverdue(), record.getAdvanced(), record.getOpenConsignment(), record.getDueConsignment(), record.getNewConsignment(), record.getSales(), record.getExpense(), record.getDeposit(), record.getPcoh(), record.getAcoh(), record.getDiff(), record.getDiscrepancyType(), record.getDiscrepancyCategory(), record.getDiscrepancyAmount(), record.getAdditionalInformation());
+		String SQL = "insert into record (branch, bank, date, consignment, overdue, advanced, open_consignment, due_consignment, new_consignment, sales, expense, deposit, ocoh, pcoh, acoh, diff, discrepancy_type, discrepancy_category, discrepancy_amount, additional_information) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(SQL, record.getBranch(), record.getBank(), record.getDate(), record.getConsignment(), record.getOverdue(), record.getAdvanced(), record.getOpenConsignment(), record.getDueConsignment(), record.getNewConsignment(), record.getSales(), record.getExpense(), record.getDeposit(), record.getOcoh(), record.getPcoh(), record.getAcoh(), record.getDiff(), record.getDiscrepancyType(), record.getDiscrepancyCategory(), record.getDiscrepancyAmount(), record.getAdditionalInformation());
 	}
 
 	public void updateRecord(Record record) {
-		String SQL = "update record set branch = ?, bank = ?, date = ?, consignment = ?, overdue = ?, advanced = ?, open_consignment = ?, due_consignment = ?, new_consignment = ?, sales = ?, expense = ?, deposit = ?, pcoh = ?, acoh = ?, diff = ?, discrepancy_type = ?, discrepancy_category = ?, discrepancy_amount = ?, additional_information = ? where id = ?";
-		jdbcTemplate.update(SQL, record.getBranch(), record.getBank(), record.getDate(), record.getConsignment(), record.getOverdue(), record.getAdvanced(), record.getOpenConsignment(), record.getDueConsignment(), record.getNewConsignment(), record.getSales(), record.getExpense(), record.getDeposit(), record.getPcoh(), record.getAcoh(), record.getDiff(), record.getDiscrepancyType(), record.getDiscrepancyCategory(), record.getDiscrepancyAmount(), record.getAdditionalInformation(), record.getId());
+		String SQL = "update record set branch = ?, bank = ?, date = ?, consignment = ?, overdue = ?, advanced = ?, open_consignment = ?, due_consignment = ?, new_consignment = ?, sales = ?, expense = ?, deposit = ?, ocoh = ?, pcoh = ?, acoh = ?, diff = ?, discrepancy_type = ?, discrepancy_category = ?, discrepancy_amount = ?, additional_information = ? where id = ?";
+		jdbcTemplate.update(SQL, record.getBranch(), record.getBank(), record.getDate(), record.getConsignment(), record.getOverdue(), record.getAdvanced(), record.getOpenConsignment(), record.getDueConsignment(), record.getNewConsignment(), record.getSales(), record.getExpense(), record.getDeposit(), record.getOcoh(), record.getPcoh(), record.getAcoh(), record.getDiff(), record.getDiscrepancyType(), record.getDiscrepancyCategory(), record.getDiscrepancyAmount(), record.getAdditionalInformation(), record.getId());
 	}
 
 	public void updateBankOfRecords(String currentBankName, String newBankName) {
@@ -84,6 +88,7 @@ public class RecordDAO implements RowMapper<Record> {
 		record.setSales(rs.getBigDecimal("sales"));
 		record.setExpense(rs.getBigDecimal("expense"));
 		record.setDeposit(rs.getBigDecimal("deposit"));
+		record.setOcoh(rs.getBigDecimal("ocoh"));
 		record.setPcoh(rs.getBigDecimal("pcoh"));
 		record.setAcoh(rs.getBigDecimal("acoh"));
 		record.setDiff(rs.getBigDecimal("diff"));

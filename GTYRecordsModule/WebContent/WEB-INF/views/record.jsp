@@ -95,7 +95,7 @@
 							<div class="row" style="margin-bottom: 5px">
 								<div class="col-md-8 col-xs-12">
 									<label>Branch</label>
-									<select class="form-control input-sm" id="addBranch" name="addBranch">
+									<select class="form-control input-sm" id="addBranch" name="addBranch" onchange="getAddPreviousRecordAcoh()">
 										<c:forEach items="${branches}" var="branch">
 											<option value="${branch.name}">${branch.name}</option>
 										</c:forEach>
@@ -103,7 +103,7 @@
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Date</label>
-									<input type="date" class="form-control input-sm" id="addDate" name="addDate" min="2000-01-01" max="2100-01-01">
+									<input type="date" class="form-control input-sm" id="addDate" name="addDate" min="2000-01-01" max="2100-01-01" onchange="getAddPreviousRecordAcoh()">
 								</div>
 							</div>
 							<div class="row" style="margin-bottom: 5px">
@@ -137,25 +137,26 @@
 							<div class="row" style="margin-bottom: 5px">
 								<div class="col-md-4 col-xs-12">
 									<label>Sales</label>
-									<input type="number" class="form-control input-sm" id="addSales" name="addSales" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
+									<input type="number" class="form-control input-sm" id="addSales" name="addSales" min="0" max="999999999999999" oninput="sliceLength(this, 15)" onkeyup="recomputeAddPcohAndAcoh()">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Expense</label>
-									<input type="number" class="form-control input-sm" id="addExpense" name="addExpense" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
+									<input type="number" class="form-control input-sm" id="addExpense" name="addExpense" min="0" max="999999999999999" oninput="sliceLength(this, 15)" onkeyup="recomputeAddPcohAndAcoh()">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Deposit</label>
-									<input type="number" class="form-control input-sm" id="addDeposit" name="addDeposit" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
+									<input type="number" class="form-control input-sm" id="addDeposit" name="addDeposit" min="0" max="999999999999999" oninput="sliceLength(this, 15)" onkeyup="recomputeAddPcohAndAcoh()">
 								</div>
 							</div>
 							<div class="row" style="margin-bottom: 5px">
 								<div class="col-md-4 col-xs-12">
+									<input type="hidden" id="addOcoh" name="addOcoh">
 									<label>PCOH</label>
 									<input type="number" class="form-control input-sm" id="addPcoh" name="addPcoh" min="0" max="999999999999999" oninput="sliceLength(this, 15)" disabled>
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>ACOH</label>
-									<input type="number" class="form-control input-sm" id="addAcoh" name="addAcoh" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
+									<input type="number" class="form-control input-sm" id="addAcoh" name="addAcoh" min="0" max="999999999999999" oninput="sliceLength(this, 15)" onkeyup="recomputeAddDiff()">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Diff</label>
@@ -220,7 +221,7 @@
 								<input type="hidden" class="form-control input-sm" id="updateId" name="updateId">
 								<div class="col-md-8 col-xs-12">
 									<label>Branch</label>
-									<select class="form-control input-sm" id="updateBranch" name="updateBranch">
+									<select class="form-control input-sm" id="updateBranch" name="updateBranch" onchange="getUpdatePreviousRecordAcoh()">
 										<c:forEach items="${branches}" var="branch">
 											<option value="${branch.name}">${branch.name}</option>
 										</c:forEach>
@@ -228,7 +229,7 @@
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Date</label>
-									<input type="date" class="form-control input-sm" id="updateDate" name="updateDate" min="2000-01-01" max="2100-01-01">
+									<input type="date" class="form-control input-sm" id="updateDate" name="updateDate" min="2000-01-01" max="2100-01-01" onchange="getUpdatereviousRecordAcoh()">
 								</div>
 							</div>
 							<div class="row" style="margin-bottom: 5px">
@@ -262,25 +263,26 @@
 							<div class="row" style="margin-bottom: 5px">
 								<div class="col-md-4 col-xs-12">
 									<label>Sales</label>
-									<input type="number" class="form-control input-sm" id="updateSales" name="updateSales" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
+									<input type="number" class="form-control input-sm" id="updateSales" name="updateSales" min="0" max="999999999999999" oninput="sliceLength(this, 15)" onkeyup="recomputeUpdatePcohAndAcoh()">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Expense</label>
-									<input type="number" class="form-control input-sm" id="updateExpense" name="updateExpense" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
+									<input type="number" class="form-control input-sm" id="updateExpense" name="updateExpense" min="0" max="999999999999999" oninput="sliceLength(this, 15)" onkeyup="recomputeUpdatePcohAndAcoh()">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Deposit</label>
-									<input type="number" class="form-control input-sm" id="updateDeposit" name="updateDeposit" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
+									<input type="number" class="form-control input-sm" id="updateDeposit" name="updateDeposit" min="0" max="999999999999999" oninput="sliceLength(this, 15)" onkeyup="recomputeUpdatePcohAndAcoh()">
 								</div>
 							</div>
 							<div class="row" style="margin-bottom: 5px">
 								<div class="col-md-4 col-xs-12">
+									<input type="number" id="updateOcoh" name="updateOcoh" style="display:none">
 									<label>PCOH</label>
 									<input type="number" class="form-control input-sm" id="updatePcoh" name="updatePcoh" min="0" max="999999999999999" oninput="sliceLength(this, 15)" disabled>
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>ACOH</label>
-									<input type="number" class="form-control input-sm" id="updateAcoh" name="updateAcoh" min="0" max="999999999999999" oninput="sliceLength(this, 15)">
+									<input type="number" class="form-control input-sm" id="updateAcoh" name="updateAcoh" min="0" max="999999999999999" oninput="sliceLength(this, 15)" onkeyup="recomputeUpdateDiff()">
 								</div>
 								<div class="col-md-4 col-xs-12">
 									<label>Diff</label>
@@ -347,6 +349,7 @@
 											<th>Sales</th>
 											<th>Exp</th>
 											<th>Deposit</th>
+											<th>OCOH</th>
 											<th>PCOH</th>
 											<th>ACOH</th>
 											<th>Diff</th>
@@ -373,6 +376,7 @@
 												<td id="recordRowSales_${record.id}"><c:out value="${record.sales}" /></td>
 												<td id="recordRowExpense_${record.id}"><c:out value="${record.expense}" /></td>
 												<td id="recordRowDeposit_${record.id}"><c:out value="${record.deposit}" /></td>
+												<td id="recordRowOcoh_${record.id}"><c:out value="${record.ocoh}" /></td>
 												<td id="recordRowPcoh_${record.id}"><c:out value="${record.pcoh}" /></td>
 												<td id="recordRowAcoh_${record.id}"><c:out value="${record.acoh}" /></td>
 												<td id="recordRowDiff_${record.id}"><c:out value="${record.diff}" /></td>
@@ -419,6 +423,7 @@
 			$("#addSales").val("0");
 			$("#addExpense").val("0");
 			$("#addDeposit").val("0");
+			$("#addOcoh").val("0");
 			$("#addPcoh").val("0");
 			$("#addAcoh").val("0");
 			$("#addDiff").val("0");
@@ -466,6 +471,7 @@
 			var sales = $("#addSales").val();
 			var expense = $("#addExpense").val();
 			var deposit = $("#addDeposit").val();
+			var ocoh = $("#addOcoh").val();
 			var pcoh = $("#addPcoh").val();
 			var acoh = $("#addAcoh").val();
 			var diff = $("#addDiff").val();
@@ -488,6 +494,7 @@
 					'sales' : sales,
 					'expense' : expense,
 					'deposit' : deposit, 
+					'ocoh' : ocoh,
 					'pcoh' : pcoh,
 					'acoh' : acoh,
 					'diff' : diff,
@@ -535,6 +542,7 @@
 					row += '<td id="recordRowSales_' + result.id + '">' + result.sales + '</td>';
 					row += '<td id="recordRowExpense_' + result.id + '">' + result.expense + '</td>';
 					row += '<td id="recordRowDeposit_' + result.id + '">' + result.deposit + '</td>';
+					row += '<td id="recordRowOcoh_' + result.id + '">' + result.ocoh + '</td>';
 					row += '<td id="recordRowPcoh_' + result.id + '">' + result.pcoh + '</td>';
 					row += '<td id="recordRowAcoh_' + result.id + '">' + result.acoh + '</td>';
 					row += '<td id="recordRowDiff_' + result.id + '">' + result.diff + '</td>';
@@ -567,6 +575,7 @@
 			$("#updateSales").attr("value", $("#recordRowSales_" + id).text());
 			$("#updateExpense").attr("value", $("#recordRowExpense_" + id).text());
 			$("#updateDeposit").attr("value", $("#recordRowDeposit_" + id).text());
+			$("#updateOcoh").attr("value", $("#recordRowOcoh_" + id).text());
 			$("#updatePcoh").attr("value", $("#recordRowPcoh_" + id).text());
 			$("#updateAcoh").attr("value", $("#recordRowAcoh_" + id).text());
 			$("#updateDiff").attr("value", $("#recordRowDiff_" + id).text());
@@ -592,6 +601,7 @@
 			var sales = $("#updateSales").val();
 			var expense = $("#updateExpense").val();
 			var deposit = $("#updateDeposit").val();
+			var ocoh = $("#updateOcoh").val();
 			var pcoh = $("#updatePcoh").val();
 			var acoh = $("#updateAcoh").val();
 			var diff = $("#updateDiff").val();
@@ -603,7 +613,7 @@
 				$('#updateRecordModal').modal('toggle');
 				$('#successNotificationDiv').css('display', 'block');
 				$('#successNotificationMessage').text("Successfully updated record");
-				updateRecordToTable(id, branch, date, consignment, overdue, advanced, openConsignment, dueConsignment, newConsignment, sales, expense, deposit, pcoh, acoh, diff, discrepancyType, discrepancyCategory, discrepancyAmount, additionalInformation);
+				updateRecordToTable(id, branch, date, consignment, overdue, advanced, openConsignment, dueConsignment, newConsignment, sales, expense, deposit, ocoh, pcoh, acoh, diff, discrepancyType, discrepancyCategory, discrepancyAmount, additionalInformation);
 			} else {
 				$('#successUpdateModalNotificationDiv').css('display', 'block');
 				$('#successUpdateModalNotificationMessage').text(result);
@@ -624,6 +634,7 @@
 			var sales = $("#updateSales").val();
 			var expense = $("#updateExpense").val();
 			var deposit = $("#updateDeposit").val();
+			var ocoh = $("#updateOcoh").val();
 			var pcoh = $("#updatePcoh").val();
 			var acoh = $("#updateAcoh").val();
 			var diff = $("#updateDiff").val();
@@ -647,6 +658,7 @@
 					'sales' : sales,
 					'expense' : expense,
 					'deposit' : deposit, 
+					'ocoh' : ocoh,
 					'pcoh' : pcoh,
 					'acoh' : acoh,
 					'diff' : diff,
@@ -667,7 +679,7 @@
 			return validationResult;
 		}
 
-		function updateRecordToTable(id, branch, date, consignment, overdue, advanced, openConsignment, dueConsignment, newConsignment, sales, expense, deposit, pcoh, acoh, diff, discrepancyType, discrepancyCategory, discrepancyAmount, additionalInformation) {
+		function updateRecordToTable(id, branch, date, consignment, overdue, advanced, openConsignment, dueConsignment, newConsignment, sales, expense, deposit, ocoh, pcoh, acoh, diff, discrepancyType, discrepancyCategory, discrepancyAmount, additionalInformation) {
 			$('#recordRowId_' + id).text(id);
 			$('#recordRowBranch_' + id).text(branch);
 			$('#recordRowDate_' + id).text(date);
@@ -680,6 +692,7 @@
 			$('#recordRowSales_' + id).text(sales);
 			$('#recordRowExpense_' + id).text(expense);
 			$('#recordRowDeposit_' + id).text(deposit);
+			$('#recordRowOcoh_' + id).text(ocoh);
 			$('#recordRowPcoh_' + id).text(pcoh);
 			$('#recordRowAcoh_' + id).text(acoh);
 			$('#recordRowDiff_' + id).text(diff);
@@ -695,6 +708,83 @@
 		    }
 		}
 		
+		function getAddPreviousRecordAcoh() {
+			var branch = $("#addBranch").val();
+			var date = $("#addDate").val();
+			getPreviousRecordAcoh(branch, date);
+		}
+		
+		function getUpdatePreviousRecordAcoh() {
+			var branch = $("#updateBranch").val();
+			var date = $("#updateDate").val();
+			getPreviousRecordAcoh(branch, date);
+		}
+		
+		function getPreviousRecordAcoh(branch, date) {
+			$.ajax({
+				type : 'POST',
+				url : 'getPreviousRecordAcoh',
+				data : {
+					'branch' : branch, 
+					'date' : date
+				},
+				dataType : 'text',
+				async : false,
+				success : function(result) {
+					$("#addOcoh").val(result);
+					recomputeAddPcohAndAcoh();
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert(jqXHR.status + ' ' + jqXHR.responseText);
+					alert(errorThrown);
+				}
+			});
+		}
+		
+		function recomputeAddPcohAndAcoh() {
+			var ocoh = parseInt($("#addOcoh").val());
+			var sales = parseInt($("#addSales").val());
+			var expense = parseInt($("#addExpense").val());
+			var deposit = parseInt($("#addDeposit").val());
+			var pcoh = (ocoh + sales) - (expense + deposit);
+			var acoh = pcoh;
+
+			$("#addPcoh").val(pcoh);
+			$("#addAcoh").val(acoh);
+			
+			recomputeAddDiff();
+		}
+		
+		function recomputeAddDiff() {
+			var pcoh = parseInt($("#addPcoh").val());
+			var acoh = parseInt($("#addAcoh").val());
+			var diff = pcoh - acoh;
+
+			$("#addDiff").val(diff);
+		}
+		
+		function recomputeUpdatePcohAndAcoh() {
+			var ocoh = parseInt($("#updateOcoh").val());
+			var sales = parseInt($("#updateSales").val());
+			var expense = parseInt($("#updateExpense").val());
+			var deposit = parseInt($("#updateDeposit").val());
+			var pcoh = (ocoh + sales) - (expense + deposit);
+			var acoh = pcoh;
+
+			$("#updatePcoh").val(pcoh);
+			$("#updateAcoh").val(acoh);
+			
+			recomputeUpdateDiff();
+		}
+		
+		function recomputeUpdateDiff() {
+			var pcoh = parseInt($("#updatePcoh").val());
+			var acoh = parseInt($("#updateAcoh").val());
+			var diff = pcoh - acoh;
+
+			$("#updateDiff").val(diff);
+		}
+
 	</script>
 </body>
 

@@ -2,15 +2,11 @@ package com.gty.module.records.controller;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,12 +30,6 @@ import com.gty.module.records.utility.JSONUtility;
 
 @Controller
 public class RecordController {
-	@InitBinder
-	public void allowEmptyDateBinding(WebDataBinder binder) {
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat(), true));
-		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-	}
-	
 	@RequestMapping("/")
 	public ModelAndView showIndex() {
 		ModelAndView modelAndView = new ModelAndView("record");
@@ -83,8 +73,13 @@ public class RecordController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/getPreviousRecordAcoh", method = RequestMethod.POST)
+	public @ResponseBody String getPreviousRecordAcoh(@ModelAttribute("record") Record record, BindingResult bindingResult) throws JsonProcessingException {
+		return RecordService.getPreviousRecordAcoh(record).toString();
+	}
+
 	@RequestMapping(value = "/addNewRecord", method = RequestMethod.POST)
-	public @ResponseBody String addNewRecord(@ModelAttribute("record") Record record) throws IOException {
+	public @ResponseBody String addNewRecord(@ModelAttribute("record") Record record, BindingResult bindingResult) throws IOException {
 		return RecordService.addRecord(record);
 	}
 
@@ -95,7 +90,7 @@ public class RecordController {
 	}
 
 	@RequestMapping(value = "/updateRecord", method = RequestMethod.POST)
-	public @ResponseBody String updateRecord(@ModelAttribute("record") Record record) throws IOException {
+	public @ResponseBody String updateRecord(@ModelAttribute("record") Record record, BindingResult bindingResult) throws IOException {
 		return RecordService.updateRecord(record);
 	}
 }
